@@ -70,6 +70,18 @@ function ChatRoom(connection, jid, password, XMPP, options, settings) {
     this.myroomjid = jid;
     this.password = password;
     logger.info("Joined MUC as " + this.myroomjid);
+    window.dispatchEvent(new CustomEvent("JitsiJoinedMUC", {
+        detail: {
+            jid: jid,
+            password:password
+        },
+        bubbles: true,
+        cancelable: false
+    }));
+    
+    
+    
+    
     this.members = {};
     this.presMap = {};
     this.presHandlers = {};
